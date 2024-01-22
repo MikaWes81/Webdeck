@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <button onclick="expl()">Explorer Öffnen</button>
+    <button onclick="shutdown()">Abmelden</button>
+    
+</body>
+<script>
+    const socket = io()
+    function expl(){
+        socket.emit("runFile", "C:/Windows/explorer.exe")
+    }
+    function shutdown(){
+        if(confirm("Willst du den benutzer wirklich abmelden?"))
+        {
+            socket.emit("runFile", "shutdown -l")
+        }
+    }
+</script>
+<style>
+    button{
+        width: 120px;
+        height: 120px;
+        margin: 6px;
+        border: #222;
+        border-radius: 5px;
+        background-color: #44444477;
+    }
+    body{
+        background-color: #333;
+    }
+</style>
+</html>
